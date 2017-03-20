@@ -1,0 +1,9 @@
+/.idea
+/node_modules
+/vendor
+/log/*
+/tmp/cache/*/*
+/tmp/pids/*
+/tmp/sockets/*
+/composer.lock
+!**/.gitkeep

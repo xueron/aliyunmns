@@ -1,0 +1,35 @@
+{
+  "name": "xueron/aliyunmns",
+  "type": "library",
+  "description": "Aliyun MNS SDK",
+  "keywords": [
+    "aliyun",
+    "MNS",
+    "mq"
+  ],
+  "homepage": "https://www.aliyun.com/product/mns?spm=5176.product27412.416540.68.VA3yh6",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Xueron Nee",
+      "email": "xueron@xueron.com",
+      "homepage": "https://www.xueron.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "guzzlehttp/guzzle": "^6.2",
+    "psr/http-message": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AliyunMNS\\": "src/AliyunMNS"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
