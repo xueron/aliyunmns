@@ -1,4 +1,5 @@
 <?php
+
 namespace AliyunMNS\Model;
 
 use AliyunMNS\Constants;
@@ -17,6 +18,7 @@ class TopicAttributes
     # the following attributes cannot be changed
     private $topicName;
     private $createTime;
+    private $messageCount;
     private $lastModifyTime;
 
     public function __construct(
@@ -25,7 +27,9 @@ class TopicAttributes
         $topicName = null,
         $createTime = null,
         $lastModifyTime = null,
-        $loggingEnabled = null)
+        $loggingEnabled = null,
+        $messageCount = null
+    )
     {
         $this->maximumMessageSize = $maximumMessageSize;
         $this->messageRetentionPeriod = $messageRetentionPeriod;
@@ -33,6 +37,7 @@ class TopicAttributes
         $this->topicName = $topicName;
         $this->createTime = $createTime;
         $this->lastModifyTime = $lastModifyTime;
+        $this->messageCount = $messageCount;
     }
 
     public function setMaximumMessageSize($maximumMessageSize)
@@ -80,6 +85,11 @@ class TopicAttributes
         return $this->lastModifyTime;
     }
 
+    public function getMessageCount()
+    {
+        return $this->messageCount;
+    }
+
     public function writeXML(\XMLWriter $xmlWriter)
     {
         if ($this->maximumMessageSize != null) {
@@ -101,6 +111,7 @@ class TopicAttributes
         $createTime = null;
         $lastModifyTime = null;
         $loggingEnabled = null;
+        $messageCount = null;
         while ($xmlReader->read()) {
             if ($xmlReader->nodeType == \XMLReader::ELEMENT) {
                 switch ($xmlReader->name) {
@@ -145,6 +156,12 @@ class TopicAttributes
                             }
                         }
                         break;
+                    case 'MessageCount':
+                        $xmlReader->read();
+                        if ($xmlReader->nodeType == \XMLReader::TEXT) {
+                            $messageCount = $xmlReader->value;
+                        }
+                        break;
                 }
             }
         }
@@ -154,7 +171,8 @@ class TopicAttributes
             $topicName,
             $createTime,
             $lastModifyTime,
-            $loggingEnabled);
+            $loggingEnabled,
+            $messageCount);
 
         return $attributes;
     }
